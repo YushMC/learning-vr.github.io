@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Controllers</title>
+    <script src="js/aframe-master-v1.3.0.min.js"></script>
+    <script src="js/aframe-environment-component.min.js"></script>
+    <script src="js/aframe-teleport-controls.min.js"></script>
+    <script src="js/aframe-event-set-component.min.js"></script>
+    <script src="js/extended-wasd-controls.js"></script>
+    <script src="js/aframe-extras.min.js"></script>
+    <script src="js/aframe-physics-system.min.js"></script>
+    <link rel="stylesheet" href="base.css">
+    <script>
+      AFRAME.registerComponent('play',{
+        init: function(){
+          const myEl = document.querySelector('#libro');
+          this.el.addEventListener('click', function(){
+            myEl.components.sound.playSound();
+          })
+        }
+      });
+      AFRAME.registerComponent('stop',{
+        init: function(){
+          const myEl = document.querySelector('#libro');
+          this.el.addEventListener('click', function(){
+            myEl.components.sound.stopSound();
+          })
+        }
+      });
+    </script>
+  </head>
+    </head>
+  <body>
+    <div class="mainUI" id="uiDiv" oncontextmenu="return false;">
+      <!-- top-left -->
+      <div class="regiounUI">
+        <img src="src/indicaciones.png" width="400px">
+      </div>
+      <!-- top-right -->
+      <div class="regionUI" style="top: 10px; right: 10px;">
+      </div>
+      <!-- bottom-left -->
+      <div class="regionUI" style="bottom: 10px; left: 10px;">
+      </div>
+      <!-- bottom-right -->
+      <div class="regionUI baseColor" style="bottom: 10px; right: 10px;">
+      <div class="buttonUI" style="cursor: pointer;">
+      <img src="rs/left.png" id="buttonMoveLeft" style="width: 50px;" />
+      </div>
+      <div class="buttonUI" style="cursor: pointer;">
+      <img src="rs/up.png" id="buttonMoveForward" style="width: 50px;"/><br/>
+      <img src="rs/down.png" id="buttonMoveBackward" style="width: 50px;"/>
+      </div>
+      <div class="buttonUI" style="cursor: pointer;">
+      <img src="rs/right.png" id="buttonMoveRight" style="width: 50px;"/>
+      </div>
+      </div>
+      </div>
+      <script src="src/js/wasd.js"></script>
+
+      
+
+    <a-scene  keyboard-shortcuts="enterVR: false;" vr-mode-ui="enabled: false;" screen-controls>
+
+      <a-assets>
+        <audio id="audio_mesa" src="audios/mesa.mp3"  ></audio>
+        <audio id="audio_libro" src="audios/libro.mp3"  ></audio>
+        <audio id="audio_lapiz" src="audios/lapiz.mp3"  ></audio>
+        <audio id="audio_silla" src="audios/silla.mp3"  ></audio>
+        <audio id="audio_pizarron" src="audios/pizarron.mp3"  ></audio>
+        <audio id="audio_chica" src="audios/chica.mp3"  ></audio>
+        <audio id="audio_chico" src="audios/chico.mp3"  ></audio>
+      </a-assets>
+      
+
+      <a-text id="libroText" value="Book" align="center" color="#FFFFFF"
+				visible="false" position="4.32902 2 -0.88404" rotation="0 0 0"
+				geometry="primitive: plane; width: 2; height:0.5" material="color: #000000">
+		  </a-text>
+
+      <a-text id="lapizText" value="Pencil" align="center" color="#FFFFFF"
+				visible="false" position="-7.33344 2 5.20613" rotation="0 90 0"
+				geometry="primitive: plane; width: 2; height:0.5" material="color: #000000">
+		  </a-text>
+
+      <a-text id="PizarronText" value="White board" align="center" color="#FFFFFF"
+				visible="false" position="-0.14642 3 -15.15845" rotation="0 0 0"
+				geometry="primitive: plane; width: 2; height:0.5" material="color: #000000">
+		  </a-text>
+
+      <a-text id="ChicaText" value="Girl" align="center" color="#FFFFFF"
+				visible="false" position="6.30096 3 15"  rotation="0 -90 0"
+				geometry="primitive: plane; width: 2; height:0.5" material="color: #000000">
+		  </a-text>
+
+      <a-text id="MesaText" value="Table" align="center" color="#FFFFFF"
+				visible="false" position="0.3 2 -12.2882"  rotation="0 0 0"
+				geometry="primitive: plane; width: 2; height:0.5" material="color: #000000">
+		  </a-text>
+
+      <a-text id="SillaText" value="Chair" align="center" color="#FFFFFF"
+				visible="false" position="-0.04402 2 -15.50355"  rotation="0 0 0"
+				geometry="primitive: plane; width: 2; height:0.5" material="color: #000000">
+		  </a-text>
+
+      <a-text id="ChicoText" value="Boy" align="center" color="#FFFFFF"
+				visible="false" position="-9 3 -3,8" rotation="0 90 0"
+				geometry="primitive: plane; width: 2; height:0.5" material="color: #000000">
+		  </a-text>
+
+      <a-entity id="camara" camera look-controls position="2.5959079637541276 2 2.5997954491389805" extended-wasd-controls="flyEnabled: true;" >
+        <a-cursor material="color: #3257f0" geometry="primitive: ring;
+            radiusInner: 0.02; radiusOuter: 0.03"></a-cursor>
+      </a-entity>
+      
+      
+      <a-box   id="wall_1" color="white" width="15" height="5" depth="1" position="-0.215 2.5 16.74796" scale="1.52985 1 1" material="src: textures/pared-blanca.jpg"  ="" geometry=""></a-box>
+      <a-box   id="wall_2" color="white" width="15" height="5" depth="1" position="-0.215 2.5 -17.83432" scale="1.45972 1 1" material="src: textures/pared-blanca.jpg"  ="" geometry=""></a-box>
+      <a-box   id="wall_3" color="white" width="15" height="5" depth="1" position="10.81409 2.5 -0.84332" scale="2.46 1 0.58887" material="src: textures/pared-blanca.jpg" rotation="0 90 0"  ="" geometry=""></a-box>
+      <a-box   id="wall_4" color="white" width="15" height="5" depth="1" position="-10.9449 2.5 -0.68819" scale="2.46 1 1" material="src: textures/pared-blanca.jpg" rotation="0 90 0"  ="" geometry=""></a-box>
+     
+ 
+      <!-- Floor. -->
+      <a-entity id="floor" color="white" scale="0.22544 1 -0.35738"  ="" geometry="depth: 100; height: 0.2; width: 100" material="repeat: 50 20; color: #fafafa; metalness: 0.2; roughness: 0.1; src: textures/ceramica.jpg"></a-entity>
+
+
+      <!-- Meshes. -->
+
+        <!-- Personajes-->
+        
+        <a-entity event-set__enter="_event: mouseenter; _target: #ChicaText; visible: true" event-set__leave="_event: mouseleave; _target: #ChicaText; visible: false" sound="src: #audio_chica; on:click; volume:2; refDistance: 4; rolloffFactor: 4" id="ID_Girl1" color="white" obj-model="obj: 3D/chibi-suavisado.obj; mtl: 3D/chibi-suavisado.mtl" material="" scale="0.4 0.4 0.4" position="6.30096 0.1 15" rotation="0 -102.257 0"></a-entity>
+        <a-entity event-set__enter="_event: mouseenter; _target: #ChicoText; visible: true" event-set__leave="_event: mouseleave; _target: #ChicoText; visible: false" sound="src: #audio_chico; on:click; volume:2; refDistance: 4; rolloffFactor: 4" id="ID_Boy1" color="white" obj-model="obj: 3D/objs/chibiAnimate v.1.obj; mtl: 3D/mtls/chibiAnimate v.1.mtl" material="" scale="0.4 0.4 0.4" position="-9 0.1 -3,8" rotation="0 90 0"></a-entity>
+        
+        <!--Objetos-->
+
+        <!--Libros-->
+        <a-entity event-set__enter="_event: mouseenter; _target: #libroText; visible: true" event-set__leave="_event: mouseleave; _target: #libroText; visible: false" sound="src: #audio_libro; on:click; volume:2; refDistance: 4; rolloffFactor: 4" id="ID_libro1" color="white" obj-model="obj: 3D/objs/libro.obj; mtl: 3D/mtls/libro.mtl" material="" scale="0.5 0.4 0.4" position="4.32902 1.22149 -0.88404" rotation="0 -90 0"></a-entity>
+
+        <!--lapiz-->
+        <a-entity event-set__enter="_event: mouseenter; _target: #lapizText; visible: true" event-set__leave="_event: mouseleave; _target: #lapizText; visible: false" sound="src: #audio_lapiz; on:click; volume:2; refDistance: 4; rolloffFactor: 4" id="ID_lapiz1" color="white" obj-model="obj: 3D/objs/lapiz_madera.obj; mtl: 3D/mtls/lapiz_madera.mtl" material="" scale="0.5 0.4 0.4"  position="-7.33344 0.25938 5.20613" rotation="0 -90 0">
+          <a-entity sound="src: #audio_lapiz; autoplay:false:"> </a-entity>
+        </a-entity> 
+
+        <!--pizarron-->
+         <a-entity event-set__enter="_event: mouseenter; _target: #PizarronText; visible: true" event-set__leave="_event: mouseleave; _target: #PizarronText; visible: false" sound="src: #audio_pizarron; on:click; volume:2; refDistance: 4; rolloffFactor: 4" id="ID_pizarron" color="white" obj-model="obj: 3D/objs/pizarron.obj; mtl: 3D/mtls/pizarron.mtl" material="" scale="0.52403 0.71157 0.4" position="-0.14642 1.96813 -17.15845" rotation="0 0 0"></a-entity> 
+        
+        <!--Mesas -->
+        <a-entity   id="ID_mesa1" color="white" obj-model="obj: 3D/objs/mesa.obj; mtl: 3D/mtls/mesa.mtl" material="" scale="0.76898 0.4 0.6" position="-6.57222 -0.5 11.07633" rotation=""></a-entity>
+        <a-entity   id="ID_mesa2" color="white" obj-model="obj: 3D/objs/mesa.obj; mtl: 3D/mtls/mesa.mtl" material="" scale="0.76898 0.4 0.6" position="6.57222 -0.5 11.07633" rotation=""></a-entity>
+        
+        <a-entity   id="ID_mesa3" color="white" obj-model="obj: 3D/objs/mesa.obj; mtl: 3D/mtls/mesa.mtl" material="" scale="0.76898 0.4 0.6" position="-6.57222 -0.5 5.07633" rotation=""></a-entity>
+        <a-entity   id="ID_mesa4" color="white" obj-model="obj: 3D/objs/mesa.obj; mtl: 3D/mtls/mesa.mtl" material="" scale="0.76898 0.4 0.6" position="6.57222 -0.5 5.07633" rotation=""></a-entity>
+
+        <a-entity   id="ID_mesa5" color="white" obj-model="obj: 3D/objs/mesa.obj; mtl: 3D/mtls/mesa.mtl" material="" scale="0.76898 0.4 0.6" position="-6.57222 -0.5 -1.07633" rotation=""></a-entity>
+        <a-entity   id="ID_mesa6" color="white" obj-model="obj: 3D/objs/mesa.obj; mtl: 3D/mtls/mesa.mtl" material="" scale="0.76898 0.4 0.6" position="6.57222 -0.5 -1.07633" rotation=""></a-entity>
+
+        <a-entity   id="ID_mesa7" color="white" obj-model="obj: 3D/objs/mesa.obj; mtl: 3D/mtls/mesa.mtl" material="" scale="0.76898 0.4 0.6" position="-6.57222 -0.5 -7.07633" rotation=""></a-entity>
+        <a-entity   id="ID_mesa8" color="white" obj-model="obj: 3D/objs/mesa.obj; mtl: 3D/mtls/mesa.mtl" material="" scale="0.76898 0.4 0.6" position="6.57222 -0.5 -7.07633" rotation=""></a-entity>
+
+        <a-entity  event-set__enter="_event: mouseenter; _target: #MesaText; visible: true" event-set__leave="_event: mouseleave; _target: #MesaText; visible: false" sound="src: #audio_mesa; on:click; volume:2; refDistance: 4; rolloffFactor: 4" id="ID_MesaProfesor" color="white" obj-model="obj: 3D/objs/mesa.obj; mtl: 3D/mtls/mesa.mtl" material="" scale="0.42343 0.4 0.59811" position="0 -0.5 -13.2882" rotation=""></a-entity>
+
+        <!--Sillas-->
+        <a-entity   id="ID_silla1" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-8.71705 -1.08751 12.82563" rotation=""></a-entity>
+        <a-entity    id="ID_silla2" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-6.71705 -1.08751 12.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla3" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-4.71705 -1.08751 12.82563" rotation=""></a-entity>
+
+        <a-entity   id="ID_silla4" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="8.71705 -1.08751 12.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla5" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="6.71705 -1.08751 12.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla6" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="4.71705 -1.08751 12.82563" rotation=""></a-entity>
+
+        <a-entity   id="ID_silla4" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="8.71705 -1.08751 6.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla5" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="6.71705 -1.08751 6.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla6" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="4.71705 -1.08751 6.82563" rotation=""></a-entity>
+        
+        <a-entity   id="ID_silla7" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-8.71705 -1.08751 6.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla8" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-6.71705 -1.08751 6.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla9" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-4.71705 -1.08751 6.82563" rotation=""></a-entity>
+
+        <a-entity   id="ID_silla10" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="8.71705 -1.08751 0.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla11" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="6.71705 -1.08751 0.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla12" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="4.71705 -1.08751 0.82563" rotation=""></a-entity>
+        
+        <a-entity   id="ID_silla13" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-8.71705 -1.08751 0.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla14" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-6.71705 -1.08751 0.82563" rotation=""></a-entity>
+        <a-entity   id="ID_silla15" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-4.71705 -1.08751 0.82563" rotation=""></a-entity>
+
+        <a-entity   id="ID_silla16" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="8.71705 -1.08751 -5.52563" rotation=""></a-entity>
+        <a-entity   id="ID_silla17" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="6.71705 -1.08751 -5.52563" rotation=""></a-entity>
+        <a-entity   id="ID_silla18" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="4.71705 -1.08751 -5.52563" rotation=""></a-entity>
+        
+        <a-entity   id="ID_silla19" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-8.71705 -1.08751 -5.52563" rotation=""></a-entity>
+        <a-entity   id="ID_silla20" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-6.71705 -1.08751 -5.52563" rotation=""></a-entity>
+        <a-entity   id="ID_silla21" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-4.71705 -1.08751 -5.52563" rotation=""></a-entity>
+      
+        <a-entity  event-set__enter="_event: mouseenter; _target: #SillaText; visible: true" event-set__leave="_event: mouseleave; _target: #SillaText; visible: false" sound="src: #audio_silla; on:click; volume:2; refDistance: 4; rolloffFactor: 4" id="ID_sillaProfe" color="white" obj-model="obj: 3D/objs/silla.obj; mtl: 3D/mtls/silla.mtl" material="" scale="" position="-0.04402 -1.08751 -15.50355" rotation="0 180 0"></a-entity>
+        <!-- Lights. -->
+      <a-entity id="pointLight" light="type: point; intensity: 0.25" position="0 22.73506 3"></a-entity>
+      <a-entity id="pointLight" light="type: point; intensity: 0.25" position="10 12.73506 3"></a-entity>
+      <a-entity id="pointLight" light="type: point; intensity: 0.25" position="-10 12.73506 3"></a-entity>
+      <a-entity id="pointLight" light="type: point; intensity: 0.25" position="5 12.60672 -16.02873"></a-entity>
+      <a-entity id="pointLight" light="type: point; intensity: 0.25" position="5 12.60672 16.02873"></a-entity>
+      <!-- Hands. -->
+      <a-entity id="rightHand" laser-controls="hand: right"></a-entity>
+      <a-entity id="leftHand" hand-controls="left" teleport-controls></a-entity>
+      
+      <a-sky src="textures/cielo.JPG"></a-sky>
+      
+    </a-scene>
+
+    <script src="../dist/aframe-inspector.js" type="text/js"></script>
+  </body>
+
+
+  
+</html>
